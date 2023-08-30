@@ -6,12 +6,13 @@ const app = express();
 //////////////////
 
 app.get('/greeting', (req, res) => {
-    res.send("Hello, stranger");
-});
+    res.send("Hello, stranger")
+})
 
 app.get('/greeting/:name', (req, res) => {
-    res.send(`Hello, ${req.params.name}`);
-});
+    res.send(`Hello, ${req.params.name}`)
+})
+
 
 /////////////////////
 ///TIP CALCULATOR////
@@ -19,11 +20,11 @@ app.get('/greeting/:name', (req, res) => {
 
 app.get('/tip/:total/:tipPercentage', (req, res) => {
     const total = Number(req.params.total);
-    const tipPercentage = Number(req.params.tipPercentage) / 100;
-    const newTotal = (total * tipPercentage).toFixed(2);
+    const tipPercentage = Number(`0.${req.params.tipPercentage}`);
+    const newTotal = total * tipPercentage;
 
-    res.send(`Tip: $${newTotal}`);
-});
+    res.send(`${newTotal}`)
+})
 
 ///////////////////
 ///MAGIC 8 BALL///
@@ -42,9 +43,9 @@ app.get('/magic/:question', (req, res) => {
         "HAHA No",
         "Ask again later",
     ];
-    const randIdx = Math.floor(Math.random() * magic8BallResponses.length);
+    const randIdx = Math. floor(Math. random()*20);
 
-    res.send(`Question: ${req.params.question}? Answer: ${magic8BallResponses[randIdx]}`);
-});
+    res.send(`<h1>${req.params.question}? ${magic8BallResponses[randIdx]}</h1>`)
+})
 
-app.listen(3000, () => console.log('Listening on port 3000'));
+app.listen(3000, () => console.log('Listening on port 3000'))
